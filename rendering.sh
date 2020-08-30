@@ -11,12 +11,12 @@ render() {
   ${OPENSCAD} -o ${out_file} ${in_file}
 }
 
+render "side-sample.scad" & \
 render "Dactyl-top-left" & \
 render "Dactyl-bottom-left" & \
 render "Dactyl-top-right" & \
 render "Dactyl-bottom-right" & \
-render "Dactyl-wrist-rest-right" & \
-render "side-sample.scad"
+render "Dactyl-wrist-rest-right"
 
 ELAPSED_TIME=$(($SECONDS - $START_TIME))
 echo "finished!! execution time: $(($ELAPSED_TIME/60)) min $(($ELAPSED_TIME%60)) sec"
