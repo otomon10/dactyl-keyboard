@@ -11,7 +11,7 @@ render() {
   ${OPENSCAD} -o ${out_file} ${in_file}
 }
 
-render "side-sample.scad" & \
+render "side-sample" & \
 render "Dactyl-top-left" & \
 render "Dactyl-bottom-left" & \
 render "Dactyl-top-right" & \
