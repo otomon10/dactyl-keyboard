@@ -1,4 +1,4 @@
-(ns dactyl-keyboard.lightcycle
+(ns dactyl-keyboard.rentalcar
   (:refer-clojure :exclude [use import])
   (:require [scad-clj.scad :refer :all]
             [scad-clj.model :refer :all]
@@ -24,7 +24,7 @@
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@
 (def row-size 2)							;Leave at 2 for RentalCar
-(def switch-type 0)							;;;0= box 1=cherry 2= Alps		-88
+(def switch-type 1)							;;;0= box 1=cherry 2= Alps		-88
 
 (def bottom-side-width 1.2) 					;Default 1.2  Originally 1 ;;Width of the bottom sides
 (def top-case-thickness 1.25)					;Default 1.25  Originally 1
@@ -130,6 +130,9 @@
 
 
 (def sa-profile-key-height 12.7)
+
+; hot-swap
+(def hot_swappable 0)
 
 (def plate-thickness (if (== hot_swappable 0) 4 5.6))
 (def mount-width (+ keyswitch-width 3))
