@@ -49,7 +49,7 @@
 ;;;;;;Alpha area curve;;;;;;;;;;		
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@
 (def front-back-curve (deg2rad 15))					;;Default is 15 front to back curve of alpha area.
-(def left-right-curve (deg2rad 8))					;;Default is 5 left-right curve of alpha area.  
+(def left-right-curve (deg2rad 9))					;;Default is 5 left-right curve of alpha area.  
 (def alphas-column-extra-width 2.0)					;;default 2 the width between each key.
 (def alphas-row-extra-width 0.5)					;;default .5.  width between keys between rows
 (def alpha_ergo_style 0)							;;0 is no ergo 1 is ergodox style--MAKE SURE THIS IS 0 FOR LIGHTCYCLE
@@ -63,10 +63,10 @@
 (def thumb-front-back-curve (deg2rad 15))		;default 15 Key curve
 (def thumb-left-right-curve (deg2rad 5))		;;default 5 Key curve
 (def thumb-extra-width-column 2)				;;default 2
-(def left-right-thumb-tilt -28)					;;default 15 degrees  Serious down tilt =-45 which is about the limit this can go
+(def left-right-thumb-tilt -29)					;;default 15 degrees  Serious down tilt =-45 which is about the limit this can go
 (def front-back-thumb-tilt 25)   		 		;default 14 for better bottom fit originally 15
 (def  thumb-extra-width-row 1)					;;default 1
-(def top-z-offset-thumb -25)						;;The z offset of the thumb cluster.  Seperate from main offset
+(def top-z-offset-thumb -14)						;;The z offset of the thumb cluster.  Seperate from main offset
 (def z-thumb-rotation (deg2rad 3.5))			;;default of 3.5
 
 
@@ -1813,8 +1813,8 @@
 (def screw_y1  (+ row-size 1/2))
 (def screw_y2 (+ 3 1/2))
 
-(def screw_x3 1/2)		;;default 0.5 --top left mount x position
-(def screw_y3 0.5)		;;default 1.5 ---top left mount y position---try .6
+(def screw_x3 (+ 0 1/2))		;;default 0.5 --top left mount x position
+(def screw_y3 (+ 1 0.5))		;;default 1.5 ---top left mount y position---try .6
 
 (def screw_y31 0.5)		;;default 1.5 ---top left mount y position---try .6
 
@@ -2479,26 +2479,26 @@
 
 
 
-  (spit "things/Dactyl-top-right.scad"
+  (spit "things/custom/Dactyl-top-right.scad"
         (write-scad dactyl-top-right))
 
-  (spit "things/Dactyl-bottom-right.scad"
+  (spit "things/custom/Dactyl-bottom-right.scad"
         (write-scad dactyl-bottom-right))
 		
-  (spit "things/Dactyl-bottom-left.scad"
+  (spit "things/custom/Dactyl-bottom-left.scad"
         (write-scad dactyl-bottom-left))		
 		
-	(spit "things/side-sample.scad"
+	(spit "things/custom/side-sample.scad"
         (write-scad side-sample))
 	
-  (spit "things/Dactyl-top-left.scad"
+  (spit "things/custom/Dactyl-top-left.scad"
         (write-scad dactyl-top-left))
 
-  (spit "things/Dactyl-wrist-rest-right.scad"
+  (spit "things/custom/Dactyl-wrist-rest-right.scad"
       (write-scad dactyl-wrist-rest-right))
 
-(spit "things/pro-micro-trrs-mounts.scad"
-    (write-scad pro-micro-trrs-mounts))
+  (spit "things/custom/pro-micro-trrs-mounts.scad"
+      (write-scad pro-micro-trrs-mounts))
 
 ;(spit "things/lightcycle-matias-bottom-right.scad"
 ;      (write-scad dactyl-bottom-right))
