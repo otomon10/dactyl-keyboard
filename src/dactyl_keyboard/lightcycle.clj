@@ -34,7 +34,7 @@
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;;;;;General ;;;;;;;;;;;;;		
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@
-(def row-size 0)							;;0 for dactyl, 1 for lightcycle-  MAKE SURE alpha_ergo_style is 0 for lightcycle
+(def row-size 1)							;;0 for dactyl, 1 for lightcycle-  MAKE SURE alpha_ergo_style is 0 for lightcycle
 (def switch-type 1)							;;;0= box 1=cherry 2= Alps		-88
 (def bottom-side-width 1.2) 					;Default 1.2  Originally 1 ;;Width of the bottom sides
 (def top-case-thickness 1.25)					;Default 1.25  Originally 1
