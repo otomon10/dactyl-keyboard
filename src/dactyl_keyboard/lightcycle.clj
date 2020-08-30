@@ -49,7 +49,7 @@
 ;;;;;;Alpha area curve;;;;;;;;;;		
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@
 (def front-back-curve (deg2rad 15))					;;Default is 15 front to back curve of alpha area.
-(def left-right-curve (deg2rad 5))					;;Default is 5 left-right curve of alpha area.  
+(def left-right-curve (deg2rad 8))					;;Default is 5 left-right curve of alpha area.  
 (def alphas-column-extra-width 2.0)					;;default 2 the width between each key.
 (def alphas-row-extra-width 0.5)					;;default .5.  width between keys between rows
 (def alpha_ergo_style 0)							;;0 is no ergo 1 is ergodox style--MAKE SURE THIS IS 0 FOR LIGHTCYCLE
@@ -63,10 +63,10 @@
 (def thumb-front-back-curve (deg2rad 15))		;default 15 Key curve
 (def thumb-left-right-curve (deg2rad 5))		;;default 5 Key curve
 (def thumb-extra-width-column 2)				;;default 2
-(def left-right-thumb-tilt 15)					;;default 15 degrees  Serious down tilt =-45 which is about the limit this can go
-(def front-back-thumb-tilt 15)   		 		;default 14 for better bottom fit originally 15
+(def left-right-thumb-tilt -28)					;;default 15 degrees  Serious down tilt =-45 which is about the limit this can go
+(def front-back-thumb-tilt 25)   		 		;default 14 for better bottom fit originally 15
 (def  thumb-extra-width-row 1)					;;default 1
-(def top-z-offset-thumb 0)						;;The z offset of the thumb cluster.  Seperate from main offset
+(def top-z-offset-thumb -25)						;;The z offset of the thumb cluster.  Seperate from main offset
 (def z-thumb-rotation (deg2rad 3.5))			;;default of 3.5
 
 
