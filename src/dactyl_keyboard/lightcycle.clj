@@ -1009,7 +1009,7 @@
 
 ;; In column units
 (def right-wall-column (+ (last columns) 0.55))
-(def left-wall-column (- (first columns) 1/2))
+(def left-wall-column (- (first columns) 0.60))
 (def thumb-back-y 0.93)
 (def thumb-right-wall (- -1/2 0.05))
 (def thumb-front-row (+ -1 0.07))
@@ -1256,7 +1256,7 @@
                             (key-place 0 0 web-post-tl)
                             (key-place 0 0 web-post-bl)))
 							
-     (color [0 1 0] (hull (place left-wall-column 1 (translate [1 -1 1] wall-sphere-bottom-back))
+     (color [0 1 0] (hull (place left-wall-column 0.78 (translate [1 -1 1] wall-sphere-bottom-back))
                           (place left-wall-column 2 (translate [1 0 1] wall-sphere-bottom-back))
                           (key-place 0 1 web-post-tl)
                           (key-place 0 1 web-post-bl)))
@@ -1267,10 +1267,10 @@
      (color [1 1 0] (hull (place left-wall-column 1.6666  (translate [1 0 1] wall-sphere-bottom-front))
                           (key-place 0 2 web-post-bl)
                           (key-place 0 3 web-post-tl)))
-     (hull (place left-wall-column 1.6666  (translate [1 0 1] wall-sphere-bottom-front))
+     (hull (place left-wall-column 1.575  (translate [1 0 1] wall-sphere-bottom-front))
            (thumb-place 1 1 web-post-tr)
            (key-place 0 3 web-post-tl))
-     (hull (place left-wall-column 1.6666 (translate [1 0 1] wall-sphere-bottom-front))
+     (hull (place left-wall-column 1.635 (translate [1 0 1] wall-sphere-bottom-front))
            (thumb-place 1 1 web-post-tr)
            (thumb-place 1/2 thumb-back-y (translate [0 -1 1] wall-sphere-bottom-back))))))
 
@@ -1609,11 +1609,12 @@
 	(concat
 		
 		
-		(if (== alpha_ergo_style 0) (for [x (range 0.05 right-wall-column-bottom 0.985)]
+		(if (== alpha_ergo_style 0)
+    (for [x (range 0.05 right-wall-column-bottom 0.985)]
 			(union
 				(hull 
-					(bottom-hull(case-place (- x 1/2) back-y (translate [0 -1 1]  bottom-wall-sphere-bottom-back)))
-					(bottom-hull (case-place (+ x 1/2) back-y (translate [0 -1 1]  bottom-wall-sphere-bottom-back)))
+					(bottom-hull(case-place (- x 0.6) back-y (translate [0 -1 1]  bottom-wall-sphere-bottom-back)))
+					(bottom-hull (case-place (+ x 0.5) back-y (translate [0 -1 1]  bottom-wall-sphere-bottom-back)))
 				 )
 			 )
 		))
@@ -1865,6 +1866,39 @@
 		))
 		
  ;;Defines size of the mount square  
+(def screw-mounts-cylinder1 (->>
+		(cylinder  [30 5] 26)	
+		(translate [0 0 -17])
+))
+
+(def screw-mounts-cylinder2 (->>
+		(cylinder  [12 5] 26)	
+		(translate [0 0 -17])
+))
+
+
+(def screw-mounts-cylinder3 (->>
+		(cylinder  [12 5] 46)	
+		(translate [0 0 -25])
+))
+
+
+(def screw-mounts-cylinder4 (->>
+		(if (< left-right-thumb-tilt -5) (->>
+  		(cylinder  [5 20] 50)	
+			(translate [0 0 30.])
+			(rotate (/ (* π (/ left-right-thumb-tilt 4)) 180) [0 1 0])
+			(rotate (/ π 0.9) [1 0 0 ])
+		)
+		
+		(if (> left-right-thumb-tilt -5) (->> 	
+  		(cylinder  [5 20] 50)	
+			(translate [0 0 26])		
+			(rotate (/ π 10) [0 1 0])
+			(rotate (/ π 1.05) [1 0 0 ])
+		)))
+))
+
 (def screw-mounts-square (->>
 		(cube 10 10 26)	
 		(translate [0 0 -17])
@@ -1899,13 +1933,13 @@
 		(if (== alpha_ergo_style 1)	
 		(key-place ergo_screw_x1 ergo_screw_y2  screw-mounts-square))
 		(if (== alpha_ergo_style 0)		
-		 (key-place screw_x1 screw_y1  screw-mounts-square))
+		 (key-place screw_x1 screw_y1  screw-mounts-cylinder1))
 		(if (== alpha_ergo_style 0)	
-		(key-place screw_x1 screw_y2  screw-mounts-square))
+		(key-place screw_x1 screw_y2  screw-mounts-cylinder2))
 
-		(key-place screw_x3 screw_y3 screw-mounts-square1)  
-		(if (> thumb-type 0) (thumb-place 3/2 -1/2 screw-mounts-square2)	)
-		(if (== thumb-type 0) (thumb-place  1.65 -0.2 screw-mounts-square2)	
+		(key-place screw_x3 screw_y3 screw-mounts-cylinder3)  
+		(if (> thumb-type 0) (thumb-place 3/2 -1/2 screw-mounts-cylinder4)	)
+		(if (== thumb-type 0) (thumb-place  1.65 -0.2 screw-mounts-cylinder4)	
 		)
 	)
 )	
@@ -2068,7 +2102,7 @@
 (def usb-holder-thickness 5.5)
 (def usb-holder
     (->> (difference
-		(cube (+ (first usb-holder-size) usb-holder-thickness) (+ (second usb-holder-size) usb-holder-thickness) (+ (last usb-holder-size) usb-holder-thickness) )
+		(cube (+ (first usb-holder-size) usb-holder-thickness) (+ (second usb-holder-size) usb-holder-thickness) (- (last usb-holder-size) 3) )
 		(translate usb-holder-position)
 	; (cube 5 5 5)
      ) (translate  pro-micro-position); (apply cube usb-hole-size))
@@ -2477,7 +2511,8 @@
 	)
 )
 
-
+  #_(spit "things/custom/debug_stuff.scad"
+        (write-scad debug_stuff))
 
   (spit "things/custom/Dactyl-top-right.scad"
         (write-scad dactyl-top-right))
