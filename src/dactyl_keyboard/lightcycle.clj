@@ -2098,7 +2098,7 @@
 (def usb-holder-size [18.7 31  5.5 ])
 (def usb-hole-size [18.6 33.98  9.5])
 (def usb-hole-front [ 8.0 10.6 9.5])
-(def usb-hole-back [10.6 35.6 6])
+(def usb-hole-back [10.6 35.6 4])
 (def usb-holder-thickness 5.5)
 (def usb-holder
     (->> (difference
@@ -2115,7 +2115,7 @@
 			 (->>(apply cube usb-hole-front)
 			 (translate [(+ (first pro-micro-position) 1) (- (second pro-micro-position) 18) (+ (/ (last usb-holder-size) 2) (last usb-holder-position)) ]))
 			 (->>(apply cube usb-hole-back)
-			 (translate [(- (first pro-micro-position ) 0) (+ (second pro-micro-position) 10) (+ (/ (last usb-holder-size) 2) 2)]))
+			 (translate [(- (first pro-micro-position ) 0) (+ (second pro-micro-position) 10) (+ (/ (last usb-holder-size) 2) 0.8)]))
 		 )
 		 (translate usb-holder-position)
 		 ))
@@ -2468,6 +2468,13 @@
 	)
 )
 
+
+(def debug_stuff
+	(union 
+	bottom-case
+	)
+)
+
 (def dactyl-bottom-left
 	(union 
 		(->>  bottom-case (mirror [1,0,0]))
@@ -2511,28 +2518,28 @@
 	)
 )
 
-  #_(spit "things/custom/debug_stuff.scad"
+  (spit "things/custom/debug_stuff.scad"
         (write-scad debug_stuff))
 
-  (spit "things/custom/Dactyl-top-right.scad"
+  #_(spit "things/custom/Dactyl-top-right.scad"
         (write-scad dactyl-top-right))
 
-  (spit "things/custom/Dactyl-bottom-right.scad"
+  #_(spit "things/custom/Dactyl-bottom-right.scad"
         (write-scad dactyl-bottom-right))
 		
-  (spit "things/custom/Dactyl-bottom-left.scad"
+  #_(spit "things/custom/Dactyl-bottom-left.scad"
         (write-scad dactyl-bottom-left))		
 		
-	(spit "things/custom/side-sample.scad"
+	#_(spit "things/custom/side-sample.scad"
         (write-scad side-sample))
 	
-  (spit "things/custom/Dactyl-top-left.scad"
+  #_(spit "things/custom/Dactyl-top-left.scad"
         (write-scad dactyl-top-left))
 
-  (spit "things/custom/Dactyl-wrist-rest-right.scad"
+  #_(spit "things/custom/Dactyl-wrist-rest-right.scad"
       (write-scad dactyl-wrist-rest-right))
 
-  (spit "things/custom/pro-micro-trrs-mounts.scad"
+  #_(spit "things/custom/pro-micro-trrs-mounts.scad"
       (write-scad pro-micro-trrs-mounts))
 
 ;(spit "things/lightcycle-matias-bottom-right.scad"
