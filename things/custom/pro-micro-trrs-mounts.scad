@@ -2,7 +2,7 @@ difference () {
   union () {
     translate ([-0.5, 17, 4]) {
       difference () {
-        cube ([24.2, 36.5, 11.0], center=true);
+        cube ([24.2, 36.5, 2.5], center=true);
         translate ([0, 0, 2]) {
         }
       }
@@ -36,8 +36,8 @@ difference () {
           translate ([0.5, -1, 4.75]) {
             cube ([8.0, 10.6, 9.5], center=true);
           }
-          translate ([-0.5, 27, 4.75]) {
-            cube ([10.6, 35.6, 6], center=true);
+          translate ([-0.5, 27, 3.55]) {
+            cube ([10.6, 35.6, 4], center=true);
           }
         }
       }

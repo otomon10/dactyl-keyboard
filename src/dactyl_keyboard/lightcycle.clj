@@ -2518,28 +2518,28 @@
 	)
 )
 
-  (spit "things/custom/debug_stuff.scad"
+  #_(spit "things/custom/debug_stuff.scad"
         (write-scad debug_stuff))
 
-  #_(spit "things/custom/Dactyl-top-right.scad"
+  (spit "things/custom/Dactyl-top-right.scad"
         (write-scad dactyl-top-right))
 
-  #_(spit "things/custom/Dactyl-bottom-right.scad"
+  (spit "things/custom/Dactyl-bottom-right.scad"
         (write-scad dactyl-bottom-right))
 		
-  #_(spit "things/custom/Dactyl-bottom-left.scad"
+  (spit "things/custom/Dactyl-bottom-left.scad"
         (write-scad dactyl-bottom-left))		
 		
-	#_(spit "things/custom/side-sample.scad"
+	(spit "things/custom/side-sample.scad"
         (write-scad side-sample))
 	
-  #_(spit "things/custom/Dactyl-top-left.scad"
+  (spit "things/custom/Dactyl-top-left.scad"
         (write-scad dactyl-top-left))
 
-  #_(spit "things/custom/Dactyl-wrist-rest-right.scad"
+  (spit "things/custom/Dactyl-wrist-rest-right.scad"
       (write-scad dactyl-wrist-rest-right))
 
-  #_(spit "things/custom/pro-micro-trrs-mounts.scad"
+  (spit "things/custom/pro-micro-trrs-mounts.scad"
       (write-scad pro-micro-trrs-mounts))
 
 ;(spit "things/lightcycle-matias-bottom-right.scad"
