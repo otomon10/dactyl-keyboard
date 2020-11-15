@@ -1567,18 +1567,18 @@
 (def thumb-inside-lower 
 	[(hull	   
 ;;Front of case				
-		(bottom-hull   (case-place (- 2 1/2) 4 (translate [0 1 1]  bottom-wall-sphere-bottom-front)))					 
-		(bottom-hull (case-place 0.70 3.95 (translate [0 1 1]  bottom-wall-sphere-thumb-side)))
+		(bottom-hull   (case-place (- 2 1/2) 4.22 (translate [0 1 1]  bottom-wall-sphere-bottom-front)))					 
+		(bottom-hull (case-place 0.70 4.17 (translate [0 1 1]  bottom-wall-sphere-thumb-side)))
 	;	(bottom-hull   (case-place 0.70 0.72 (translate [0 1 1]  bottom-wall-sphere-thumb-side)) )
 	)
 ;;;thumb cluster side (
 (hull
-		(bottom-hull    (case-place 0.70 3.95 (translate [0 1 1]  bottom-wall-sphere-thumb-side)))
-		(bottom-hull   (case-place 0.72 3.86 (translate [0 1 1]  bottom-wall-sphere-thumb-front)) )
+		(bottom-hull    (case-place 0.70 4.17 (translate [0 1 1]  bottom-wall-sphere-thumb-side)))
+		(bottom-hull   (case-place 0.72 4.06 (translate [0 1 1]  bottom-wall-sphere-thumb-front)) )
 	)
 	(hull
 		(bottom-hull    (thumb-place thumb-right-wall thumb-front-row-sides (translate [-1 2.4 1]  bottom-wall-sphere-bottom-front)))
-		(bottom-hull   (case-place 0.72 3.87 (translate [0 1 1]  bottom-wall-sphere-thumb-front)) )
+		(bottom-hull   (case-place 0.72 4.07 (translate [0 1 1]  bottom-wall-sphere-thumb-front)) )
 		;(bottom-hull   (case-place 0.72 3.84 (translate [0 1 1]  bottom-wall-sphere-thumb-front)) )
 	
 	)
@@ -1589,15 +1589,15 @@
 	(concat
 		 (for [x (range 2 5)]
 			(union
-				(hull (bottom-hull(case-place (- x 1/2) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
-				(bottom-hull  (case-place (+ x 1/2) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front))); (case-place (+ x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
+				(hull (bottom-hull(case-place (- x 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+				(bottom-hull  (case-place (+ x 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front))); (case-place (+ x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
 				  )
-				(hull (bottom-hull(case-place (- x 1/2) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+				(hull (bottom-hull(case-place (- x 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
 				  )))
-		 [(hull (bottom-hull(case-place (- right-wall-column 0.1) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
-			(bottom-hull(bottom-hull(case-place (- right-wall-column 1) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front)))))
-			(hull (bottom-hull(case-place (+ 4 1/2) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
-			(bottom-hull   (case-place (- right-wall-column-bottom  0.05) 4 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+		 [(hull (bottom-hull(case-place (- right-wall-column 0.1) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+			(bottom-hull(bottom-hull(case-place (- right-wall-column 1) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))))
+			(hull (bottom-hull(case-place (+ 4 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+			(bottom-hull   (case-place (- right-wall-column-bottom  0.05) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
 				)]))
 				
 (def right-wall-lower (concat
@@ -1614,9 +1614,9 @@
 			; (key-place 5 (first rows) web-post-tr)
 			 )
 	   (hull (bottom-hull(case-place right-wall-column-bottom  4 (translate [-1 0 1] ( bottom-wall-sphere-bottom 1/2))))
-			 (bottom-hull(case-place (- right-wall-column-bottom  0.05) 4 (translate [0 1 1] ( bottom-wall-sphere-bottom 0))))
+			 (bottom-hull(case-place (- right-wall-column-bottom  0.05) 4.22 (translate [0 1 1] ( bottom-wall-sphere-bottom 0))))
 			 )
-	   (hull (bottom-hull(case-place right-wall-column-bottom  4 (translate [-1 0 1] ( bottom-wall-sphere-bottom 1/2))))
+	   (hull (bottom-hull(case-place right-wall-column-bottom  4.22 (translate [-1 0 1] ( bottom-wall-sphere-bottom 1/2))))
 
 			 ))])
 							 )
@@ -1796,7 +1796,7 @@
          ;    main-keys-bottom;turns off the connectors
 		;	 bottom-keys
 			;bottom-keys2
-			front-wall-lower
+			front-wall-lower; mod
             right-wall-lower
              back-wall-lower
              left-wall-lower
@@ -1806,7 +1806,7 @@
              thumb-back-wall-lower
              thumb-left-wall-lower
              thumb-front-wall-lower
-             thumb-inside-lower
+             thumb-inside-lower; mod
            ;  stands
 			 )
 	
@@ -2469,6 +2469,11 @@
 	   screw-holes
 	)
 	   
+)
+
+(def debug_stuff
+	   (union
+			  bottom-sides)
 )
 
 (def dactyl-top-left
