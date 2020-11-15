@@ -319,13 +319,23 @@
                       cap-top-height))
 
 (defn key-place [column row shape]
-  (let [row-placed-shape (->> shape
-                              (translate [0 0 (- row-radius)])
-                              (rotate (* α (- 2 row)) [1 0 0])
-                              (translate [0 0 row-radius]))
+  (let [row-placed-shape
+        ;; mod angle for column 4,5
+        (cond
+          (>= column 4)
+            (->> shape
+            (translate [0 0 (- row-radius)])
+            (rotate (* α (- 1.7 row)) [1 0 0])
+            (translate [0 0 row-radius]))
+          :else
+            (->> shape
+            (translate [0 0 (- row-radius)])
+            (rotate (* α (- 2 row)) [1 0 0])
+            (translate [0 0 row-radius]))
+        )
         column-offset (cond
                         (= column 2) [0 2.82 -3.0] ;;was moved -4.5----Controls the Z offset of the columns to each other
-                        (>= column 4) [0 -5.8 5.64]
+                        (>= column 4) [0 -4.5 5.64] ;; mod angle for column 4,5
                         :else [0 0 0])
         column-angle (* β (- 2 column))
         placed-shape (->> row-placed-shape
@@ -1069,6 +1079,7 @@
 
 (def front-wall
   (let [step wall-step ;;0.1
+        y-mod 4.22
         wall-step 0.05 ;;0.05 Controls the overhang at the top. How much it covers forward.
         place case-place
         top-cover (fn [x-start x-end y-start y-end]
@@ -1078,40 +1089,42 @@
     (union
      (apply union		;;Front left top case wall
             (for [x (range-inclusive 0.7 (- right-wall-column step) step)]
-              (hull (place x 4 wall-sphere-top-front)
-                    (place (+ x step) 4 wall-sphere-top-front)
-                    (place x 4 wall-sphere-bottom-front)
-                    (place (+ x step) 4 wall-sphere-bottom-front))))
+              (hull (place x y-mod wall-sphere-top-front)
+                    (place (+ x step) y-mod wall-sphere-top-front)
+                    (place x y-mod wall-sphere-bottom-front)
+                    (place (+ x step) y-mod wall-sphere-bottom-front))))
      (apply union
             (for [x (range-inclusive 0.5 0.7 0.01)]
-              (hull (place x 4 wall-sphere-top-front)
-                    (place (+ x step) 4 wall-sphere-top-front)
-                    (place 0.7 4 wall-sphere-bottom-front))))
-     (top-cover 0.5 1.7 3.6 4)
-     (top-cover 1.59 2.41 3.42 4) ;; was 3.32@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     (top-cover 2.39 3.41 3.6 4)
+              (hull (place x y-mod wall-sphere-top-front)
+                    (place (+ x step) y-mod wall-sphere-top-front)
+                    (place 0.7 y-mod wall-sphere-bottom-front))))
+
+     (top-cover 0.5 1.7 3.6 y-mod)
+     (top-cover 1.59 2.41 3.42 y-mod)
+     (top-cover 2.39 3.41 3.6 y-mod)
+
 	 (if (= alpha_ergo_style 1)
-		(top-cover 5.59 6.00 3.0 4))
+		(top-cover 5.59 6.00 3.0 y-mod))
      (apply union
             (for [x (range 2 5)]
               (union
-               (hull (place (- x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
-                     (place (+ x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
+               (hull (place (- x 1/2) y-mod (translate [0 1 1] wall-sphere-bottom-front))
+                     (place (+ x 1/2) y-mod (translate [0 1 1] wall-sphere-bottom-front))
                      (key-place x 4 web-post-bl)
                      (key-place x 4 web-post-br))
-               (hull (place (- x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
+               (hull (place (- x 1/2) y-mod (translate [0 1 1] wall-sphere-bottom-front))
                      (key-place x 4 web-post-bl)
                      (key-place (- x 1) 4 web-post-br)))))
-     (hull (place right-wall-column 4 (translate [0 1 1] wall-sphere-bottom-front))
-           (place (- right-wall-column 1) 4 (translate [0 1 1] wall-sphere-bottom-front))
+     (hull (place right-wall-column y-mod (translate [0 1 1] wall-sphere-bottom-front))
+           (place (- right-wall-column 1) y-mod (translate [0 1 1] wall-sphere-bottom-front))
            (key-place 5 4 web-post-bl)
            (key-place 5 4 web-post-br))
-     (hull (place (+ 4 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
-           (place (- right-wall-column 1) 4 (translate [0 1 1] wall-sphere-bottom-front))
+     (hull (place (+ 4 1/2) y-mod (translate [0 1 1] wall-sphere-bottom-front))
+           (place (- right-wall-column 1) y-mod (translate [0 1 1] wall-sphere-bottom-front))
            (key-place 4 4 web-post-br)
            (key-place 5 4 web-post-bl))
-     (hull (place 0.7 4 (translate [0 1 1] wall-sphere-bottom-front))
-           (place 1.7 4 (translate [0 1 1] wall-sphere-bottom-front))
+     (hull (place 0.7 y-mod (translate [0 1 1] wall-sphere-bottom-front))
+           (place 1.7 y-mod (translate [0 1 1] wall-sphere-bottom-front))
            (key-place 1 4 web-post-bl)
            (key-place 1 4 web-post-br)))))
 
@@ -1135,11 +1148,12 @@
                     (place (+ x step) back-y wall-sphere-top-back)
                     (place x back-y wall-sphere-bottom-back)
                     (place (+ x step) back-y wall-sphere-bottom-back))))
+     (front-top-cover left-wall-column (+ left-wall-column 0.12) back-y (+ back-y 2.09));; mod
      (front-top-cover left-wall-column 1.56 back-y (+ back-y 0.06));;The following 3 control back overhang
      (front-top-cover left-wall-column right-wall-column back-y (+ back-y 0.15)); left 4 columns overhang-- was 2.4  but had issues with alps and lightcycle
      ;(front-top-cover 1.56 2.44 back-y (+ back-y 0.24));middle finger column
-     (front-top-cover 3.56 4.44 back-y (+ back-y 0.32));2nd from right overhand
-     (front-top-cover 4.3 right-wall-column back-y (+ back-y 0.32))	;;Edge most column
+     (front-top-cover 3.56 4.44 back-y (+ back-y 0.54));2nd from right overhand
+     (front-top-cover 4.3 right-wall-column back-y (+ back-y 0.54))	;;Edge most column
 
 
      (hull (place left-wall-column back-y (translate [1 -1 1] wall-sphere-bottom-back))
@@ -1175,7 +1189,7 @@
      (apply union
             (map (partial apply hull)
                  (partition 2 1
-                            (for [scale (range-inclusive 0 1 0.01)]
+                            (for [scale (range-inclusive -0.05 1 0.01)]
                               (let [x (scale-to-range 4 back-y scale)]
                                 (hull (place right-wall-column x (wall-sphere-top scale))
                                       (place right-wall-column x (wall-sphere-bottom scale))))))))
@@ -1351,6 +1365,7 @@
 
 (def thumb-front-wall
   (let [step wall-step ;;0.1
+        y-mod 4.22
         wall-sphere-top-fronttep 0.05 ;;0.05
         place thumb-place
         plate-height (/ (- sa-double-length mount-height) 2)
@@ -1372,16 +1387,16 @@
 (if ( > left-right-thumb-tilt -30)(->> 
      (hull (place thumb-right-wall thumb-front-row wall-sphere-top-front)
            (place thumb-right-wall thumb-front-row wall-sphere-bottom-front)
-           (case-place 0.5 4 wall-sphere-top-front))
+           (case-place 0.5 y-mod wall-sphere-top-front))
     (hull (place thumb-right-wall thumb-front-row wall-sphere-bottom-front)
-           (case-place 0.5 4 wall-sphere-top-front)
-           (case-place 0.7 4 wall-sphere-bottom-front))))
+           (case-place 0.5 y-mod wall-sphere-top-front)
+           (case-place 0.7 y-mod wall-sphere-bottom-front))))
 
      (hull (place thumb-right-wall thumb-front-row wall-sphere-bottom-front)
            (key-place 1 4 web-post-bl)
            (place 0 -1/2 thumb-br)
            (place 0 -1/2 web-post-br)
-           (case-place 0.7 4 wall-sphere-bottom-front))
+           (case-place 0.7 y-mod wall-sphere-bottom-front))
 
      (hull (place (+ 5/2 0.05) thumb-front-row (translate [1 1 1] wall-sphere-bottom-front))
            (place (+ 3/2 0.05) thumb-front-row (translate [0 1 1] wall-sphere-bottom-front))
@@ -2465,13 +2480,6 @@
 	text-insert
 	bottom-case
 
-	)
-)
-
-
-(def debug_stuff
-	(union 
-	bottom-case
 	)
 )
 
