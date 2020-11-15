@@ -2341,16 +2341,16 @@
 	(union
 	;;right cut
 			(->> (cylinder 1.85 25)(with-fn 20) (rotate  (/  π 2)  [1 0 0])(translate [25 45 4.5]))
-			 (scale [1.3 1 1] (->> (cylinder 2 3.2)(with-fn 50) (rotate  (/  π 2)  [1 0 0])(translate [19.23 54 4.])))
+			 (scale [1.3 1 1] (->> (cylinder 2 3.2)(with-fn 50) (rotate  (/  π 2)  [1 0 0])(translate [19.23 50 4.])))
 			(->> (cube 6 3 12.2)(translate [25 39 1.5]))
 	;;middle cut
 			(->> (cylinder 1.85 25)(with-fn 20) (rotate  (/  π 2)  [1 0 0])(translate [0 45 4.5]))
-			(scale [1.3 1 1] (->> (cylinder 2 3.2)(with-fn 50) (rotate  (/  π 2)  [1 0 0])(translate [0 54 4.])))
+			(scale [1.3 1 1] (->> (cylinder 2 3.2)(with-fn 50) (rotate  (/  π 2)  [1 0 0])(translate [0 50 4.])))
 			(->> (cube 6 3 12.2)(translate [0 39 1.5]))
 			
 	;;left
 			(->> (cylinder 1.85 25)(with-fn 20) (rotate  (/  π 2)  [1 0 0])(translate [-25 45 4.5]))
-			(scale [1.3 1 1] (->> (cylinder 2 3.2)(with-fn 50) (rotate  (/  π 2)  [1 0 0])(translate [-19.23 54 4.])))
+			(scale [1.3 1 1] (->> (cylinder 2 3.2)(with-fn 50) (rotate  (/  π 2)  [1 0 0])(translate [-19.23 50 4.])))
 			(->> (cube 6 3 12.2)(translate [-25 39 1.5]))
 	)
 )
@@ -2472,8 +2472,16 @@
 )
 
 (def debug_stuff
-	   (union
-			  bottom-sides)
+	(union 
+    ; top
+    (difference
+      (union key-holes
+          connectors
+          )
+      screw-holes
+    )
+    bottom-case
+  )
 )
 
 (def dactyl-top-left

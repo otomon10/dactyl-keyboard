@@ -56082,7 +56082,7 @@ union () {
               }
             }
             scale ([1.3, 1, 1]) {
-              translate ([19.23, 54, 4.0]) {
+              translate ([19.23, 50, 4.0]) {
                 rotate (a=90.0, v=[1, 0, 0]) {
                   cylinder ($fn=50, h=3.2, r=2, center=true);
                 }
@@ -56097,7 +56097,7 @@ union () {
               }
             }
             scale ([1.3, 1, 1]) {
-              translate ([0, 54, 4.0]) {
+              translate ([0, 50, 4.0]) {
                 rotate (a=90.0, v=[1, 0, 0]) {
                   cylinder ($fn=50, h=3.2, r=2, center=true);
                 }
@@ -56112,7 +56112,7 @@ union () {
               }
             }
             scale ([1.3, 1, 1]) {
-              translate ([-19.23, 54, 4.0]) {
+              translate ([-19.23, 50, 4.0]) {
                 rotate (a=90.0, v=[1, 0, 0]) {
                   cylinder ($fn=50, h=3.2, r=2, center=true);
                 }
