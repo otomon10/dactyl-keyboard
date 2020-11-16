@@ -1079,7 +1079,7 @@
 
 (def front-wall
   (let [step wall-step ;;0.1
-        y-mod 4.22
+        y-mod 4.25
         wall-step 0.05 ;;0.05 Controls the overhang at the top. How much it covers forward.
         place case-place
         top-cover (fn [x-start x-end y-start y-end]
@@ -1189,7 +1189,7 @@
      (apply union
             (map (partial apply hull)
                  (partition 2 1
-                            (for [scale (range-inclusive -0.05 1 0.01)]
+                            (for [scale (range-inclusive -0.057 1 0.01)]
                               (let [x (scale-to-range 4 back-y scale)]
                                 (hull (place right-wall-column x (wall-sphere-top scale))
                                       (place right-wall-column x (wall-sphere-bottom scale))))))))
@@ -1307,11 +1307,11 @@
                     (thumb-place (+ x step) back-y wall-sphere-top-back)
                     (thumb-place x back-y wall-sphere-bottom-back)
                     (thumb-place (+ x step) back-y wall-sphere-bottom-back))))
-     (hull (thumb-place 1/2 back-y wall-sphere-top-back)
+     (hull (thumb-place 1/2 back-y wall-sphere-top-back); mod
            (thumb-place 1/2 back-y wall-sphere-bottom-back)
-           (case-place left-wall-column 1.6666 wall-sphere-top-front))
-     (hull (thumb-place 1/2 back-y wall-sphere-bottom-back)
-           (case-place left-wall-column 1.6666 wall-sphere-top-front)
+           (case-place (+ left-wall-column 0.12) 1.6666 wall-sphere-top-front))
+    (hull (thumb-place 1/2 back-y wall-sphere-bottom-back); mod
+           (case-place (+ left-wall-column 0.12) 1.6666 wall-sphere-top-front)
            (case-place left-wall-column 1.6666 wall-sphere-bottom-front))
      (hull
       (thumb-place 1/2 thumb-back-y (translate [0 -1 1] wall-sphere-bottom-back))
@@ -1365,7 +1365,7 @@
 
 (def thumb-front-wall
   (let [step wall-step ;;0.1
-        y-mod 4.22
+        y-mod 4.25
         wall-sphere-top-fronttep 0.05 ;;0.05
         place thumb-place
         plate-height (/ (- sa-double-length mount-height) 2)
@@ -1567,7 +1567,7 @@
 (def thumb-inside-lower 
 	[(hull	   
 ;;Front of case				
-		(bottom-hull   (case-place (- 2 1/2) 4.22 (translate [0 1 1]  bottom-wall-sphere-bottom-front)))					 
+		(bottom-hull   (case-place (- 2 1/2) 4.25 (translate [0 1 1]  bottom-wall-sphere-bottom-front)))					 
 		(bottom-hull (case-place 0.70 4.17 (translate [0 1 1]  bottom-wall-sphere-thumb-side)))
 	;	(bottom-hull   (case-place 0.70 0.72 (translate [0 1 1]  bottom-wall-sphere-thumb-side)) )
 	)
@@ -1589,15 +1589,15 @@
 	(concat
 		 (for [x (range 2 5)]
 			(union
-				(hull (bottom-hull(case-place (- x 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
-				(bottom-hull  (case-place (+ x 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front))); (case-place (+ x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
+				(hull (bottom-hull(case-place (- x 1/2) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+				(bottom-hull  (case-place (+ x 1/2) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front))); (case-place (+ x 1/2) 4 (translate [0 1 1] wall-sphere-bottom-front))
 				  )
-				(hull (bottom-hull(case-place (- x 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+				(hull (bottom-hull(case-place (- x 1/2) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
 				  )))
-		 [(hull (bottom-hull(case-place (- right-wall-column 0.1) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
-			(bottom-hull(bottom-hull(case-place (- right-wall-column 1) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))))
-			(hull (bottom-hull(case-place (+ 4 1/2) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
-			(bottom-hull   (case-place (- right-wall-column-bottom  0.05) 4.22 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+		 [(hull (bottom-hull(case-place (- right-wall-column 0.1) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+			(bottom-hull(bottom-hull(case-place (- right-wall-column 1) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front)))))
+			(hull (bottom-hull(case-place (+ 4 1/2) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
+			(bottom-hull   (case-place (- right-wall-column-bottom  0.05) 4.25 (translate [0 1 1] bottom-wall-sphere-bottom-front)))
 				)]))
 				
 (def right-wall-lower (concat
@@ -1614,9 +1614,9 @@
 			; (key-place 5 (first rows) web-post-tr)
 			 )
 	   (hull (bottom-hull(case-place right-wall-column-bottom  4 (translate [-1 0 1] ( bottom-wall-sphere-bottom 1/2))))
-			 (bottom-hull(case-place (- right-wall-column-bottom  0.05) 4.22 (translate [0 1 1] ( bottom-wall-sphere-bottom 0))))
+			 (bottom-hull(case-place (- right-wall-column-bottom  0.05) 4.25 (translate [0 1 1] ( bottom-wall-sphere-bottom 0))))
 			 )
-	   (hull (bottom-hull(case-place right-wall-column-bottom  4.22 (translate [-1 0 1] ( bottom-wall-sphere-bottom 1/2))))
+	   (hull (bottom-hull(case-place right-wall-column-bottom  4.25 (translate [-1 0 1] ( bottom-wall-sphere-bottom 1/2))))
 
 			 ))])
 							 )
@@ -2109,7 +2109,7 @@
 ;@@@@@@@@@@@@@@pro micro/trrs holder@@@@@@@@@@@@@@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def usb-holder-position [0 0 2])
-(def pro-micro-position [-0.5 (- 37 (* row-size 20)) 4])		;(def pro-micro-position [-18 16 4])
+(def pro-micro-position [-15.5 (- 37 (* row-size 20)) 4])		;(def pro-micro-position [-18 16 4])
 (def usb-holder-size [18.7 31  5.5 ])
 (def usb-hole-size [18.6 33.98  9.5])
 (def usb-hole-front [ 8.0 10.6 9.5])
@@ -2117,7 +2117,7 @@
 (def usb-holder-thickness 5.5)
 (def usb-holder
     (->> (difference
-		(cube (+ (first usb-holder-size) usb-holder-thickness) (+ (second usb-holder-size) usb-holder-thickness) (- (last usb-holder-size) 3) )
+		(cube (+ (first usb-holder-size) usb-holder-thickness) (+ (second usb-holder-size) usb-holder-thickness) (- (last usb-holder-size) 3.5) )
 		(translate usb-holder-position)
 	; (cube 5 5 5)
      ) (translate  pro-micro-position); (apply cube usb-hole-size))
@@ -2135,7 +2135,7 @@
 		 (translate usb-holder-position)
 		 ))
 	
-(def trrs-holder-position [-18.5 (- 47. (* row-size 20)) 5])
+(def trrs-holder-position [-33.5 (- 47. (* row-size 20)) 5])
 (def trrs-holder-size [12 13.6 9.2 ])
 (def trrs-hole [10.7 12.7 11])
 (def trrs-hole-front [7. 6. 8. ])
@@ -2471,18 +2471,6 @@
 	   
 )
 
-(def debug_stuff
-	(union 
-    ; top
-    (difference
-      (union key-holes
-          connectors
-          )
-      screw-holes
-    )
-    bottom-case
-  )
-)
 
 (def dactyl-top-left
 
