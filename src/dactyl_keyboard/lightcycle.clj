@@ -79,7 +79,7 @@
 (def wrist-rest-rotation-angle 0)				;;Default 9 The angle in counter clockwise the wrist rest is at			
 (def wrist-rest-ledge 4)						;;Default 4 The height of ledge the silicone wrist rest fits inside
 (def rest-offset-x 0)							;; Default 0 offset of the wrist rest in the x direction
-(def rest-offset-y 8)							;; Default 0
+(def rest-offset-y 12)							;; Default 0
 (def wrist-rest-y-angle 0)						;;0 Default.  Controls the wrist rest y axis tilt (left to right)
 
 
@@ -2376,7 +2376,7 @@
 			))
 			cut-bottom
 		rest-case-cuts
-	) (translate [20 -103 0]))
+	) (translate [20 -107 0]))
 )		
 
 

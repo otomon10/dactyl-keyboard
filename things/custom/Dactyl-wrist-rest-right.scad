@@ -1,10 +1,10 @@
 mirror ([1, 0, 0]) {
   union () {
-    translate ([20, -103, 0]) {
+    translate ([20, -107, 0]) {
       difference () {
         union () {
           rotate (a=0.0, v=[0, 0, 1]) {
-            translate ([0, -7, 0]) {
+            translate ([0, -3, 0]) {
               scale ([1, 1, 1]) {
                 difference () {
                   scale ([1.08, 1.08, 1]) {
