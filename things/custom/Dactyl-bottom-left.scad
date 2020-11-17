@@ -55914,6 +55914,11 @@ union () {
                 cube ([300, 300, 50], center=true);
               }
             }
+            translate ([-53, -32, 18]) {
+              rotate (a=13.333333333333334, v=[0, 0, 1]) {
+                cube ([57, 32, 30], center=true);
+              }
+            }
           }
         }
         translate ([0, 1.5, 0]) {
@@ -56121,6 +56126,11 @@ union () {
             translate ([-25, 39, 1.5]) {
               cube ([6, 3, 12.2], center=true);
             }
+          }
+        }
+        translate ([62, 34, 5.5]) {
+          union () {
+            cube ([10, 5, 5], center=true);
           }
         }
       }

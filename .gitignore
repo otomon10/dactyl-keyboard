@@ -7,3 +7,4 @@
 .lein-*
 
 /target
+.vscode/settings.json

@@ -2134,7 +2134,19 @@
 		 )
 		 (translate usb-holder-position)
 		 ))
-	
+
+(def power-btn-position [62 34 5.5])
+(def power-btn-size [10 5 5])
+
+(def power-btn-hole
+    (->>
+		(union
+			(->>(apply cube power-btn-size))
+		 )
+		 (translate power-btn-position)
+		 )
+)
+
 (def trrs-holder-position [-33.5 (- 47. (* row-size 20)) 5])
 (def trrs-holder-size [12 13.6 9.2 ])
 (def trrs-hole [10.7 12.7 11])
@@ -2414,6 +2426,16 @@
 	))
 )
 
+;; battery
+(def battery-position [-53 -32 18])
+(def battery-cutout
+  (->>
+		(cube 57 32 30)
+    (rotate  (/ π 13.5) [0 0 1])
+		(translate battery-position)
+	)
+)
+
 (def bottom-case
 	(scale[(- scale-bottom 0.0), scale-bottom, scale-bottom] 
 	   (difference
@@ -2429,7 +2451,8 @@
 							;;screw-mount 
 							trimmed_square_screw_mounts
 							)
-							plate-cutout1			
+							plate-cutout1
+              battery-cutout
 					)											
 				)	
 			(if (== row-size 1) (->> (translate [0 0 0] usb-holder-hole)
@@ -2446,6 +2469,7 @@
 		(if (== wrist-rest-on 1) (->> rest-case-cuts	(translate [20 -110 0])	);;add/remove the wrist rest holes
 		(if (== wrist-rest-on 0) cut-bottom));
 	;	))
+    power-btn-hole
 		)
 	)	
 )		   
