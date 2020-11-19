@@ -2135,8 +2135,10 @@
 		 (translate usb-holder-position)
 		 ))
 
-(def power-btn-position [62 34 5.5])
-(def power-btn-size [10 5 5])
+(def power-btn-position [62 34 6])
+(def power-btn-size [11 10 6])
+(def power-btn-position2 [62 29 6])
+(def power-btn-size2 [21.5 10 6])
 
 (def power-btn-hole
     (->>
@@ -2144,6 +2146,30 @@
 			(->>(apply cube power-btn-size))
 		 )
 		 (translate power-btn-position)
+		 )
+)
+
+(def power-btn-hole2
+    (->>
+		(union
+			(->>(apply cube power-btn-size2))
+		 )
+		 (translate power-btn-position2)
+		 )
+)
+
+(def power-btn-holder-position [62 33 6])
+(def power-btn-holder-size [(+ 11 (+ 10 5.5)) (+ 3 0) 7])
+(def power-btn-holder-position2 [62 33 9])
+(def power-btn-holder-size2 [(+ 11 (+ 10 5.5)) (+ 3 0) 2])
+
+(def power-btn-holder
+    (->>
+		(union
+			(->>(apply cube power-btn-holder-size)(translate power-btn-holder-position))
+			(->>(apply cube power-btn-holder-size2)(translate power-btn-holder-position2))
+		 )
+		 
 		 )
 )
 
@@ -2450,6 +2476,7 @@
 							pre-cut-bottom		
 							;;screw-mount 
 							trimmed_square_screw_mounts
+              power-btn-holder
 							)
 							plate-cutout1
               battery-cutout
@@ -2470,6 +2497,7 @@
 		(if (== wrist-rest-on 0) cut-bottom));
 	;	))
     power-btn-hole
+    power-btn-hole2
 		)
 	)	
 )		   

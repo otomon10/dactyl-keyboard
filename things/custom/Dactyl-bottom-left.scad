@@ -41238,6 +41238,14 @@ union () {
                   }
                 }
               }
+              union () {
+                translate ([62, 33, 6]) {
+                  cube ([26.5, 3, 7], center=true);
+                }
+                translate ([62, 33, 9]) {
+                  cube ([26.5, 3, 2], center=true);
+                }
+              }
             }
             difference () {
               union () {
@@ -56128,9 +56136,14 @@ union () {
             }
           }
         }
-        translate ([62, 34, 5.5]) {
+        translate ([62, 34, 6]) {
           union () {
-            cube ([10, 5, 5], center=true);
+            cube ([11, 10, 6], center=true);
+          }
+        }
+        translate ([62, 29, 6]) {
+          union () {
+            cube ([21.5, 10, 6], center=true);
           }
         }
       }
