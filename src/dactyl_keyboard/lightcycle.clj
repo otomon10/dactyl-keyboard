@@ -2111,7 +2111,7 @@
 (def usb-holder-position [0 0 2])
 (def pro-micro-position [-15.5 (- 37 (* row-size 20)) 4])		;(def pro-micro-position [-18 16 4])
 (def usb-holder-size [18.7 31  5.5 ])
-(def usb-hole-size [18.6 33.98  9.5])
+(def usb-hole-size [18.6 33.98  8.5])
 (def usb-hole-front [ 8.0 10.6 9.5])
 (def usb-hole-back [10.6 35.6 4])
 (def usb-holder-thickness 5.5)
@@ -2136,9 +2136,9 @@
 		 ))
 
 (def power-btn-position [62 34 6])
-(def power-btn-size [11 10 6])
+(def power-btn-size [7.25 10 6])
 (def power-btn-position2 [62 29 6])
-(def power-btn-size2 [21.5 10 6])
+(def power-btn-size2 [20.6 10 6])
 
 (def power-btn-hole
     (->>

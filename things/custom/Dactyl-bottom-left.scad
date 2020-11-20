@@ -55947,7 +55947,7 @@ union () {
             translate ([0, 0, 2]) {
               union () {
                 translate ([-15.5, 17, 4.5]) {
-                  cube ([18.6, 33.98, 9.5], center=true);
+                  cube ([18.6, 33.98, 8.5], center=true);
                 }
                 translate ([-14.5, -1, 4.75]) {
                   cube ([8.0, 10.6, 9.5], center=true);
@@ -56138,12 +56138,12 @@ union () {
         }
         translate ([62, 34, 6]) {
           union () {
-            cube ([11, 10, 6], center=true);
+            cube ([7.25, 10, 6], center=true);
           }
         }
         translate ([62, 29, 6]) {
           union () {
-            cube ([21.5, 10, 6], center=true);
+            cube ([20.6, 10, 6], center=true);
           }
         }
       }
